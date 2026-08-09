@@ -61,7 +61,7 @@ See [docs/architecture.md](docs/architecture.md) for boundaries and data flow, a
 ```console
 python -m pip install --require-hashes -r requirements-dev.lock
 python tools/quality_gate.py
-python -m unittest discover -v
+python -m unittest discover -s tests -v
 python -m compileall -q -f measuretrace tests tools
 ```
 

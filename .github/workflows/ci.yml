@@ -38,7 +38,7 @@ jobs:
       - name: Run structural policy gate
         run: python tools/quality_gate.py
       - name: Run complete test suite
-        run: python -m unittest discover -v
+        run: python -m unittest discover -s tests -v
       - name: Compile production and test modules
         run: python -m compileall -q -f measuretrace tests tools
       - name: Build wheel and source archive twice
