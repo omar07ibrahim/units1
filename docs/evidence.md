@@ -29,3 +29,19 @@ Before adoption, a reviewer must:
 7. scan every filename and visible string for secrets, personal data, third-party marks, or unsupported claims.
 
 Only then may a later commit place the reviewed bytes under `evidence/portfolio/` and update README links. If Chrome is unavailable or any check fails, CI fails and no screenshot claim is published.
+
+## Adopted evidence set
+
+The current `evidence/portfolio/` bytes came from workflow run
+[`31288049557`](https://github.com/omar07ibrahim/units1/actions/runs/31288049557)
+for source commit `e9c2d941b7a7e931329655d6ff7621801230f639`. The streamed artifact
+ZIP SHA-256 is
+`9147fef9333ded23338d75bb6237a57ea2da36fce56a3b1482b171fb407b3127`;
+its detached manifest SHA-256 is
+`1035384373224a683e5f00288fc1c207c084364f6cbdf08b960b95c7d8bbcd16`.
+
+A separate audit checked safe paths, duplicate names and JSON keys, every file
+size and digest, generator/source binding, PNG chunk CRCs and decoded pixels,
+GIF/SVG structure, receipt semantics, CLI output, drift values, and
+secret-shaped text. All three responsive captures were then inspected at
+original resolution. See the [adopted review record](../evidence/portfolio/README.md).

@@ -1,0 +1,8 @@
+$ python -m measuretrace convert 1 mi km --places 6 --receipt evidence/staged/sample-receipt.json
+1 mi -> 1.609344 km
+exact: 25146/15625
+factor: 25146/15625
+rounding: ROUND_HALF_EVEN at 6 decimal places
+receipt-sha256: ea0d204079c86b24bce4213d3365afe06d185811918cd45dded3cef7414adca9
+$ python -m measuretrace verify evidence/staged/sample-receipt.json
+verified ea0d204079c86b24bce4213d3365afe06d185811918cd45dded3cef7414adca9
