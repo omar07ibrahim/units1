@@ -1,0 +1,2 @@
+# MeasureTrace has no third-party runtime dependencies.
+# Python itself is pinned in .python-version and in CI.
