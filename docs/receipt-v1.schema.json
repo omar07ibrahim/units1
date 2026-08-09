@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/measuretrace/receipt-v1.schema.json",
+  "title": "MeasureTrace conversion receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "canonical_input",
+    "decimal_places",
+    "exact_result_denominator",
+    "exact_result_numerator",
+    "factor_denominator",
+    "factor_numerator",
+    "original_input",
+    "receipt_schema",
+    "receipt_sha256",
+    "registry_id",
+    "registry_sha256",
+    "rounded_result",
+    "rounding_mode",
+    "source_unit",
+    "target_unit"
+  ],
+  "properties": {
+    "canonical_input": {"type": "string"},
+    "decimal_places": {"type": "integer", "minimum": 0, "maximum": 12},
+    "exact_result_denominator": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+    "exact_result_numerator": {"type": "string", "pattern": "^-?(0|[1-9][0-9]*)$"},
+    "factor_denominator": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+    "factor_numerator": {"type": "string", "pattern": "^-?(0|[1-9][0-9]*)$"},
+    "original_input": {"type": "string", "minLength": 1, "maxLength": 80},
+    "receipt_schema": {"const": "measuretrace.conversion-receipt.v1"},
+    "receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "registry_id": {"const": "nist-bipm-length-v1"},
+    "registry_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "rounded_result": {"type": "string"},
+    "rounding_mode": {
+      "enum": ["ROUND_DOWN", "ROUND_HALF_EVEN", "ROUND_HALF_UP"]
+    },
+    "source_unit": {"enum": ["m", "km", "mi"]},
+    "target_unit": {"enum": ["m", "km", "mi"]}
+  }
+}

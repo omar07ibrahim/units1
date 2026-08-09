@@ -1,0 +1,17 @@
+{
+  "schema": "measuretrace.unit-registry.v1",
+  "units": {
+    "km": {
+      "meters_denominator": "1",
+      "meters_numerator": "1000"
+    },
+    "m": {
+      "meters_denominator": "1",
+      "meters_numerator": "1"
+    },
+    "mi": {
+      "meters_denominator": "125",
+      "meters_numerator": "201168"
+    }
+  }
+}
