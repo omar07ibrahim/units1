@@ -1,0 +1,5 @@
+# Legacy baseline
+
+This directory preserves byte-for-byte copies of the two application blobs present at commit `fe2b0332012ef9b03d73f6fc7b9ae1758f096b4b`. The manifest also points to the unchanged root `.gitattributes` blob.
+
+The baseline exists only to make the rehabilitation auditable. It records observed behavior and known defects; it does not endorse them. It makes no authorship, ownership, or licensing claim. The copies are excluded from packaging and production execution.

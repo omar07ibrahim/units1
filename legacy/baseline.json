@@ -1,0 +1,68 @@
+{
+  "schema": "measuretrace.legacy-baseline.v1",
+  "captured_from": {
+    "repository": "omar07ibrahim/units1",
+    "branch": "main",
+    "commit": "fe2b0332012ef9b03d73f6fc7b9ae1758f096b4b",
+    "tree": "7a54249ba79162be8f80370985d80bf8ec9fa909"
+  },
+  "files": [
+    {
+      "path": ".gitattributes",
+      "git_blob_sha1": "dfe0770424b2a19faf507a501ebfc23be8f54e7b",
+      "bytes": 66,
+      "copy": ".gitattributes"
+    },
+    {
+      "path": "app.py",
+      "git_blob_sha1": "a3af754672f88ab6af3e49f812a0cbe54b94e131",
+      "bytes": 2288,
+      "copy": "legacy/source/app.py"
+    },
+    {
+      "path": "templates/index.html",
+      "git_blob_sha1": "4cc341409461d1fe6b8938818c19a19775e8ee87",
+      "bytes": 1695,
+      "copy": "legacy/source/templates/index.html"
+    }
+  ],
+  "behavior_cases": [
+    {
+      "name": "identity",
+      "from": "meter",
+      "to": "meter",
+      "input": "2.5",
+      "legacy_result": "2.5"
+    },
+    {
+      "name": "mile_to_kilometer_approximation",
+      "from": "mile",
+      "to": "kilometer",
+      "input": "1",
+      "legacy_result": "1.60934"
+    },
+    {
+      "name": "mile_to_meter_approximation",
+      "from": "mile",
+      "to": "meter",
+      "input": "1",
+      "legacy_result": "1609.34"
+    },
+    {
+      "name": "invalid_number",
+      "from": "meter",
+      "to": "kilometer",
+      "input": "not-a-number",
+      "legacy_result": null
+    }
+  ],
+  "known_defects": [
+    "binary floating-point conversion",
+    "rounded mile constants instead of the exact international-mile definition",
+    "valid zero result hidden by a truthiness check in the template",
+    "error_message computed but never rendered",
+    "remote runtime stylesheet dependency",
+    "development debug server enabled"
+  ],
+  "capture": "Complete two-commit history and all three blobs were inspected through GitHub APIs."
+}
