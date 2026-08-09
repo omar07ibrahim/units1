@@ -2,7 +2,7 @@
 
 ## Original baseline
 
-The rehabilitation starts from public repository `omar07ibrahim/units1`, main commit `fe2b0332012ef9b03d73f6fc7b9ae1758f096b4b`, tree `7a54249ba79162be8f80370985d80bf8ec9fa909`.
+The rehabilitation starts from the historical public repository identity `omar07ibrahim/units1`, main commit `fe2b0332012ef9b03d73f6fc7b9ae1758f096b4b`, tree `7a54249ba79162be8f80370985d80bf8ec9fa909`. The current canonical repository is `omar07ibrahim/measuretrace`; GitHub redirects the legacy URL.
 
 `legacy/baseline.json` records every original blob ID and byte length. The two application blobs are copied byte-for-byte under `legacy/source/`; the root `.gitattributes` remains unchanged. The complete original history contained two commits and three blobs when captured.
 

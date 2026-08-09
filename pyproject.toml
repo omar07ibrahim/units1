@@ -10,6 +10,10 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = []
 
+[project.urls]
+Repository = "https://github.com/omar07ibrahim/measuretrace"
+Issues = "https://github.com/omar07ibrahim/measuretrace/issues"
+
 [project.scripts]
 measuretrace = "measuretrace.cli:main"
 

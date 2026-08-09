@@ -33,7 +33,7 @@ Only then may a later commit place the reviewed bytes under `evidence/portfolio/
 ## Adopted evidence set
 
 The current `evidence/portfolio/` bytes came from workflow run
-[`31289140743`](https://github.com/omar07ibrahim/units1/actions/runs/31289140743)
+[`31289140743`](https://github.com/omar07ibrahim/measuretrace/actions/runs/31289140743)
 for source commit `b9f4e5a92723804a59c61fec813e63136a4b765a`. The streamed artifact
 ZIP SHA-256 is
 `a74ba764cb9dfae1aa0ef631e53e686d8975090463fe187a613f17196996e3c7`;
