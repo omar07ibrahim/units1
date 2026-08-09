@@ -127,7 +127,7 @@ h1 {
 }
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   gap: 1rem;
   align-items: stretch;
 }
@@ -160,12 +160,18 @@ legend {
   margin-bottom: 1rem;
   font-weight: 750;
 }
-.field { margin-bottom: 1.1rem; }
+.field {
+  min-width: 0;
+  margin-bottom: 1.1rem;
+}
 .field-row {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 0.7rem;
   align-items: end;
+}
+.direction-row {
+  grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 0.8fr);
 }
 label {
   display: block;
@@ -345,11 +351,13 @@ pre {
 }
 .provenance p { margin: 0; }
 .provenance p + p { margin-top: 0.35rem; }
+@media (max-width: 1100px) {
+  .workspace { grid-template-columns: 1fr; }
+  .result-card { min-height: 28rem; }
+}
 @media (max-width: 780px) {
   .masthead { padding-bottom: 2.8rem; }
   .registry-tag { display: none; }
-  .workspace { grid-template-columns: 1fr; }
-  .result-card { min-height: 28rem; }
 }
 @media (max-width: 460px) {
   .shell { width: min(100% - 1rem, 1120px); padding-top: 0.7rem; }
@@ -529,7 +537,7 @@ def render_page(
           </fieldset>
           <fieldset>
             <legend>2 · Choose the direction</legend>
-            <div class="field-row">
+            <div class="field-row direction-row">
               <div class="field">
                 <label for="from">From</label>
                 <select id="from" name="from">{_unit_options(source)}</select>

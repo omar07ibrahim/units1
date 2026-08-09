@@ -1,5 +1,12 @@
 # Reviewed portfolio evidence
 
+> **Status: rejected for final publication.** Independent original-resolution
+> review found the desktop source-unit label clipped beneath the native select
+> affordance. The hashes below still describe these bytes, but this set is not
+> the current accepted portfolio evidence and must be replaced through a new
+> upload-first audit cycle.
+
+
 This directory contains the exact bytes reviewed from a CI artifact before
 adoption. Do not replace an individual file in place: generate a new staged
 artifact, repeat the audit, and adopt the complete verified set in a later

@@ -39,6 +39,12 @@ class WebTests(unittest.TestCase):
         self.assertIn('label for="from"', body)
         self.assertIn('label for="to"', body)
         self.assertIn("@media (max-width: 780px)", body)
+        self.assertIn("@media (max-width: 1100px)", body)
+        self.assertIn('class="field-row direction-row"', body)
+        self.assertIn(
+            "grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 0.8fr);",
+            body,
+        )
         self.assertNotIn("bootstrap", body.lower())
         self.assertNotIn("<script", body.lower())
         self.assertNotIn("debug", body.lower())
@@ -62,6 +68,10 @@ class WebTests(unittest.TestCase):
         self.assertEqual(status, "200 OK")
         self.assertIn("1.609344", body)
         self.assertIn("25146/15625", body)
+        self.assertIn(
+            '<option value="mi" selected>International mile (mi)</option>',
+            body,
+        )
         self.assertIn('role="status"', body)
         self.assertIn('<section class="card result-card" id="result"', body)
         self.assertNotIn("autofocus", body)
