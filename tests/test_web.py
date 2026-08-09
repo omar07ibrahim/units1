@@ -147,10 +147,10 @@ class WebTests(unittest.TestCase):
 
     def test_request_shape_is_bounded(self) -> None:
         _status, _headers, body = request(query="value=1&value=2")
-        self.assertIn("exactly once", body)
+        self.assertIn("Check the measurement", body)
 
         _status, _headers, body = request(query="unexpected=value")
-        self.assertIn("unsupported field", body)
+        self.assertIn("Check the measurement", body)
 
     def test_not_found_and_method_not_allowed(self) -> None:
         status, _headers, body = request(path="/missing")
