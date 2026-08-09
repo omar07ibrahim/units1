@@ -11,7 +11,14 @@ import hashlib
 import hmac
 import json
 import re
-from decimal import (\n    ROUND_DOWN,\n    ROUND_HALF_EVEN,\n    ROUND_HALF_UP,\n    Decimal,\n    InvalidOperation,\n    localcontext,\n)
+from decimal import (
+    ROUND_DOWN,
+    ROUND_HALF_EVEN,
+    ROUND_HALF_UP,
+    Decimal,
+    InvalidOperation,
+    localcontext,
+)
 from fractions import Fraction
 from typing import Any
 
