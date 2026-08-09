@@ -30,11 +30,27 @@ Before adoption, a reviewer must:
 
 Only then may a later commit place the reviewed bytes under `evidence/portfolio/` and update README links. If Chrome is unavailable or any check fails, CI fails and no screenshot claim is published.
 
-## Rejected evidence set pending replacement
+## Adopted evidence set
 
-The set currently under evidence/portfolio came from workflow run 31288049557
-and remains byte-integral, but it is rejected for final publication.
-Original-resolution review found that ui-1440x1300.png clipped the selected
-“International mile (mi)” source label beneath the native dropdown affordance.
-A new source commit, CI artifact, independent audit, and later adoption are
-required before the portfolio claim is restored.
+The current `evidence/portfolio/` bytes came from workflow run
+[`31289140743`](https://github.com/omar07ibrahim/units1/actions/runs/31289140743)
+for source commit `b9f4e5a92723804a59c61fec813e63136a4b765a`. The streamed artifact
+ZIP SHA-256 is
+`a74ba764cb9dfae1aa0ef631e53e686d8975090463fe187a613f17196996e3c7`;
+its detached manifest SHA-256 is
+`19d3e446dc2b6600d333c7fe623d8875abd7f47765c5a9d2f9bc86166cd25079`.
+
+A separate audit checked safe paths, duplicate names and JSON keys, every file
+size and digest, generator/source binding, PNG chunk CRCs and decoded pixels,
+GIF/SVG structure, receipt semantics, CLI output, drift values, and
+secret-shaped text. All three responsive captures were then inspected at
+original resolution. The desktop capture shows the complete selected
+“International mile (mi)” label without colliding with the native select
+affordance, and its rounding fact remains on one line. See the
+[adopted review record](../evidence/portfolio/README.md).
+
+The preceding set from artifact `9030482338` remained byte-integral but was
+rejected after original-resolution review exposed the desktop select-label
+clipping. Replacement candidates `9030758005` and `9030795223` were also
+rejected because their layout squeezed the result card and wrapped the
+rounding fact. None of those rejected bytes is present in the adopted set.

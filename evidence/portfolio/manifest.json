@@ -18,7 +18,7 @@
     }
   },
   "chrome_version": "Google Chrome 150.0.7871.128",
-  "ci_sha": "e9c2d941b7a7e931329655d6ff7621801230f639",
+  "ci_sha": "b9f4e5a92723804a59c61fec813e63136a4b765a",
   "claims": [
     "UI PNGs are browser screenshots of the checked-out WSGI app.",
     "CLI PNG and GIF frames render stdout from commands executed in this job.",
@@ -83,14 +83,14 @@
       "sha256": "2df886a570bad20c4af394044646cf3daf4f4468d662e405e2e9dfa912e346be"
     },
     {
-      "bytes": 311015,
+      "bytes": 310372,
       "dimensions": [
         1440,
         1300
       ],
       "kind": "Chrome screenshot of the local WSGI app",
       "path": "ui-1440x1300.png",
-      "sha256": "667cf695ec7c5e1f4aca3feb454514a64995038fa9578e4144527e1a7d5330ed"
+      "sha256": "5349cff24fda3093827c1eb86fc4dc3a38b5303a6a39b2e5045d39b63df1200f"
     },
     {
       "bytes": 221471,
@@ -103,14 +103,14 @@
       "sha256": "e5f0926980c95521f2b930b3d98994b1596abfcf3b527c8049c9e1a65d2a44a3"
     },
     {
-      "bytes": 245358,
+      "bytes": 245496,
       "dimensions": [
         768,
         1700
       ],
       "kind": "Chrome screenshot of the local WSGI app",
       "path": "ui-768x1700.png",
-      "sha256": "3a20be9ccbb761d0826fed9afe4091fb1ba540dc310ca573cf600d316eed2c41"
+      "sha256": "22425f876c551a6e81e34e94d5a0b45fb41b362b5bdc063d75f4a94c8ce0503d"
     }
   ],
   "generated_by": "tools/generate_evidence.py",
