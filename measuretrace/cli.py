@@ -1,4 +1,4 @@
-"""Command-line interface for conversion and independent receipt verification."""
+"""Command-line interface for conversion, verification, and local serving."""
 
 from __future__ import annotations
 
@@ -46,6 +46,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     verifier = subparsers.add_parser("verify", help="verify a receipt without the core")
     verifier.add_argument("receipt", help="receipt JSON path, or - for stdin")
+
+    server = subparsers.add_parser("serve", help="serve the dependency-free web UI")
+    server.add_argument("--host", default="127.0.0.1")
+    server.add_argument("--port", type=int, default=8000)
     return parser
 
 
@@ -99,14 +103,22 @@ def main(argv: Sequence[str] | None = None) -> int:
                 print(f"receipt-sha256: {receipt['receipt_sha256']}")
             return 0
 
-        document = _read_receipt(arguments.receipt)
-        receipt = loads_receipt(document)
-        digest = verify_receipt(receipt)
-        print(f"verified {digest}")
+        if arguments.command == "verify":
+            document = _read_receipt(arguments.receipt)
+            receipt = loads_receipt(document)
+            digest = verify_receipt(receipt)
+            print(f"verified {digest}")
+            return 0
+
+        from .web import serve
+
+        serve(arguments.host, arguments.port)
         return 0
-    except (ConversionError, VerificationError, OSError, UnicodeError, json.JSONDecodeError) as exc:
+    except (ConversionError, VerificationError, OSError, UnicodeError, json.JSONDecodeError, ValueError) as exc:
         print(f"measuretrace: {exc}", file=sys.stderr)
         return 2
+    except KeyboardInterrupt:
+        return 130
 
 
 if __name__ == "__main__":
