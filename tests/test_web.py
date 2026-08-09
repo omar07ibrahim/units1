@@ -42,7 +42,7 @@ class WebTests(unittest.TestCase):
         self.assertIn("@media (max-width: 1100px)", body)
         self.assertIn('class="field-row direction-row"', body)
         self.assertIn(
-            "grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 0.8fr);",
+            "grid-template-columns: minmax(0, 1.15fr) auto minmax(0, 0.85fr);",
             body,
         )
         self.assertNotIn("bootstrap", body.lower())

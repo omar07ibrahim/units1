@@ -127,7 +127,7 @@ h1 {
 }
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
   gap: 1rem;
   align-items: stretch;
 }
@@ -171,7 +171,7 @@ legend {
   align-items: end;
 }
 .direction-row {
-  grid-template-columns: minmax(0, 1.2fr) auto minmax(0, 0.8fr);
+  grid-template-columns: minmax(0, 1.15fr) auto minmax(0, 0.85fr);
 }
 label {
   display: block;
