@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 from urllib.parse import urlencode
 
+from measuretrace.core import ConversionError
 from measuretrace.web import application
 
 
@@ -105,8 +107,27 @@ class WebTests(unittest.TestCase):
         _status, _headers, body = request(query=query)
         self.assertIn('role="alert"', body)
         self.assertIn('aria-invalid="true"', body)
-        self.assertIn("finite decimal", body.lower())
+        self.assertIn("Check the measurement", body)
         self.assertIn("autofocus", body)
+
+    def test_internal_conversion_details_are_not_exposed(self) -> None:
+        query = urlencode(
+            {
+                "value": "1",
+                "from": "mi",
+                "to": "km",
+                "places": "6",
+                "rounding": "half-even",
+            }
+        )
+        with patch(
+            "measuretrace.web.convert",
+            side_effect=ConversionError("internal implementation detail"),
+        ):
+            status, _headers, body = request(query=query)
+        self.assertEqual(status, "200 OK")
+        self.assertIn("Check the measurement", body)
+        self.assertNotIn("internal implementation detail", body)
 
     def test_swap_preserves_value_and_converts_in_new_direction(self) -> None:
         query = urlencode(

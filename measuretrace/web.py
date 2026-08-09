@@ -14,6 +14,9 @@ from .registry import REGISTRY_ID, REGISTRY_SHA256, UNITS
 
 MAX_QUERY_CHARS = 2_048
 MAX_QUERY_FIELDS = 10
+PUBLIC_INPUT_ERROR = (
+    "Check the measurement, units, decimal places, and rounding mode."
+)
 
 _STYLES = """
 :root {
@@ -681,8 +684,8 @@ def application(
             source = conversion.source_unit
             target = conversion.target_unit
             receipt = build_receipt(conversion)
-    except (ConversionError, WebInputError) as exc:
-        error = str(exc)
+    except (ConversionError, WebInputError):
+        error = PUBLIC_INPUT_ERROR
 
     content = render_page(
         value=value,
