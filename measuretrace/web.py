@@ -427,8 +427,8 @@ def _result_markup(conversion: Conversion | None, receipt: dict | None) -> str:
     document = escape(canonical_receipt_json(receipt))
     digest = escape(str(receipt["receipt_sha256"]))
     return f"""
-    <section class="card result-card" role="status" aria-live="polite"
-      aria-atomic="true" tabindex="-1" autofocus aria-labelledby="result-title">
+    <section class="card result-card" id="result" role="status" aria-live="polite"
+      aria-atomic="true" tabindex="-1" aria-labelledby="result-title">
       <div class="result-top">
         <p class="result-kicker">Rounded display · verified inputs</p>
         <h2 class="result-value" id="result-title">
@@ -512,7 +512,7 @@ def render_page(
           display came from.</p>
       </section>
       <div class="workspace">
-        <form class="card converter" action="/" method="get" aria-labelledby="form-title">
+        <form class="card converter" action="/#result" method="get" aria-labelledby="form-title">
           <h2 class="card-heading" id="form-title">Build a conversion</h2>
           <p class="card-intro">Three units. One bounded input. No hidden float step.</p>
           {error_markup}

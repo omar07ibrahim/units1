@@ -69,7 +69,7 @@ CI uses Python 3.12.11, a hash-locked universal `flit_core` wheel, and GitHub Ac
 
 ## Evidence, not mockups
 
-The evidence job starts this exact WSGI application on loopback, captures real Chrome renders at 390×844, 768×1024, and 1440×1000, executes the real CLI and verifier, derives architecture/workflow diagrams from the implemented modules, and computes a legacy-approximation drift dataset through the exact core. A manifest records every byte, dimension, source commit, browser version, and SHA-256.
+The evidence job starts this exact WSGI application on loopback, captures real Chrome renders at 390, 768, and 1440 CSS-pixel widths with tall viewports for the complete flow, executes the real CLI and verifier, derives architecture/workflow diagrams from the implemented modules, and computes a legacy-approximation drift dataset through the exact core. A manifest records every byte, dimension, source commit, browser version, and SHA-256.
 
 Generated media is uploaded as a workflow artifact first. It is not committed or described as repository evidence until a later review verifies the manifest, image structure, visible output, and provenance. See [docs/evidence.md](docs/evidence.md).
 

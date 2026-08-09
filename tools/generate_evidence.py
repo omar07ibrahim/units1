@@ -529,9 +529,9 @@ def create_browser_evidence(output: Path) -> tuple[str, dict[str, tuple[int, int
         text=True,
     )
     dimensions = {
-        "ui-390x844.png": (390, 844),
-        "ui-768x1024.png": (768, 1024),
-        "ui-1440x1000.png": (1440, 1000),
+        "ui-390x2000.png": (390, 2000),
+        "ui-768x1700.png": (768, 1700),
+        "ui-1440x1100.png": (1440, 1100),
     }
     profile = output / ".chrome-profile"
     try:
@@ -550,6 +550,8 @@ def create_browser_evidence(output: Path) -> tuple[str, dict[str, tuple[int, int
                     "--hide-scrollbars",
                     "--metrics-recording-only",
                     "--no-first-run",
+                    "--run-all-compositor-stages-before-draw",
+                    "--virtual-time-budget=1000",
                     f"--user-data-dir={profile}",
                     f"--window-size={width},{height}",
                     f"--screenshot={output / filename}",
@@ -596,9 +598,9 @@ def write_manifest(
         "legacy-drift.svg": "chart derived from drift.csv",
         "result-tour.gif": "animated bitmap rendering of three real CLI results",
         "sample-receipt.json": "canonical receipt emitted by the real CLI",
-        "ui-390x844.png": "Chrome screenshot of the local WSGI app",
-        "ui-768x1024.png": "Chrome screenshot of the local WSGI app",
-        "ui-1440x1000.png": "Chrome screenshot of the local WSGI app",
+        "ui-390x2000.png": "Chrome screenshot of the local WSGI app",
+        "ui-768x1700.png": "Chrome screenshot of the local WSGI app",
+        "ui-1440x1100.png": "Chrome screenshot of the local WSGI app",
     }
     files = []
     for name in sorted(kinds):

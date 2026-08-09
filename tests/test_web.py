@@ -34,6 +34,7 @@ class WebTests(unittest.TestCase):
         self.assertIn('name="viewport"', body)
         self.assertIn('href="#main"', body)
         self.assertIn('<main id="main">', body)
+        self.assertIn('action="/#result"', body)
         self.assertIn('label for="value"', body)
         self.assertIn('label for="from"', body)
         self.assertIn('label for="to"', body)
@@ -62,6 +63,8 @@ class WebTests(unittest.TestCase):
         self.assertIn("1.609344", body)
         self.assertIn("25146/15625", body)
         self.assertIn('role="status"', body)
+        self.assertIn('<section class="card result-card" id="result"', body)
+        self.assertNotIn("autofocus", body)
         self.assertIn("receipt_sha256", body)
 
     def test_zero_result_is_visible(self) -> None:

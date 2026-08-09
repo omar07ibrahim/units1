@@ -8,6 +8,7 @@ import hashlib
 import json
 import re
 import struct
+import zlib
 import xml.etree.ElementTree as ET
 from pathlib import Path, PurePosixPath
 from typing import Any, Sequence
@@ -36,6 +37,86 @@ def png_dimensions(path: Path) -> tuple[int, int]:
     if header[12:16] != b"IHDR":
         raise EvidenceError(f"{path.name} has no leading IHDR.")
     return struct.unpack(">II", header[16:24])
+
+
+def _paeth(left: int, up: int, upper_left: int) -> int:
+    estimate = left + up - upper_left
+    left_distance = abs(estimate - left)
+    up_distance = abs(estimate - up)
+    upper_left_distance = abs(estimate - upper_left)
+    if left_distance <= up_distance and left_distance <= upper_left_distance:
+        return left
+    if up_distance <= upper_left_distance:
+        return up
+    return upper_left
+
+
+def verify_browser_png(path: Path) -> None:
+    data = path.read_bytes()
+    position = 8
+    compressed = bytearray()
+    width = height = bit_depth = color_type = interlace = None
+    while position < len(data):
+        length = struct.unpack(">I", data[position : position + 4])[0]
+        kind = data[position + 4 : position + 8]
+        payload = data[position + 8 : position + 8 + length]
+        position += 12 + length
+        if kind == b"IHDR":
+            width, height, bit_depth, color_type, _compression, _filter, interlace = (
+                struct.unpack(">IIBBBBB", payload)
+            )
+        elif kind == b"IDAT":
+            compressed.extend(payload)
+        elif kind == b"IEND":
+            break
+    if bit_depth != 8 or color_type != 2 or interlace != 0:
+        raise EvidenceError(f"{path.name} is not an 8-bit non-interlaced RGB PNG.")
+
+    stride = int(width) * 3
+    decoded = zlib.decompress(bytes(compressed))
+    if len(decoded) != (stride + 1) * int(height):
+        raise EvidenceError(f"{path.name} scanline length is inconsistent.")
+    previous = bytearray(stride)
+    top_white = 0
+    top_pixels = int(width) * min(120, int(height))
+    sampled_colors: set[tuple[int, int, int]] = set()
+    offset = 0
+    for row_number in range(int(height)):
+        filter_type = decoded[offset]
+        source = decoded[offset + 1 : offset + 1 + stride]
+        offset += stride + 1
+        row = bytearray(stride)
+        for index, byte in enumerate(source):
+            left = row[index - 3] if index >= 3 else 0
+            up = previous[index]
+            upper_left = previous[index - 3] if index >= 3 else 0
+            if filter_type == 0:
+                value = byte
+            elif filter_type == 1:
+                value = (byte + left) & 0xFF
+            elif filter_type == 2:
+                value = (byte + up) & 0xFF
+            elif filter_type == 3:
+                value = (byte + ((left + up) // 2)) & 0xFF
+            elif filter_type == 4:
+                value = (byte + _paeth(left, up, upper_left)) & 0xFF
+            else:
+                raise EvidenceError(f"{path.name} has unknown PNG filter {filter_type}.")
+            row[index] = value
+        if row_number < min(120, int(height)):
+            for index in range(0, stride, 3):
+                if row[index : index + 3] == b"\xff\xff\xff":
+                    top_white += 1
+        sample_step = max(3, (int(width) // 200) * 3)
+        for index in range(0, stride, sample_step):
+            if index + 2 < stride:
+                sampled_colors.add((row[index], row[index + 1], row[index + 2]))
+        previous = row
+
+    if top_pixels and top_white / top_pixels > 0.95:
+        raise EvidenceError(f"{path.name} has an implausibly blank white top region.")
+    if len(sampled_colors) < 32:
+        raise EvidenceError(f"{path.name} has too little rendered color variation.")
 
 
 def safe_path(root: Path, value: str) -> Path:
@@ -131,6 +212,10 @@ def verify(manifest_path: Path, root: Path, expected_ci_sha: str | None) -> int:
                 raise EvidenceError(f"PNG dimensions do not verify: {relative}.")
             if size < 1_000:
                 raise EvidenceError(f"PNG is implausibly small: {relative}.")
+            if record.get("kind") == "Chrome screenshot of the local WSGI app":
+                if size < 15_000:
+                    raise EvidenceError(f"Browser PNG is implausibly small: {relative}.")
+                verify_browser_png(path)
         elif relative.endswith(".svg"):
             verify_svg(path)
         elif relative.endswith(".gif"):
@@ -146,9 +231,9 @@ def verify(manifest_path: Path, root: Path, expected_ci_sha: str | None) -> int:
         "legacy-drift.svg",
         "result-tour.gif",
         "sample-receipt.json",
-        "ui-390x844.png",
-        "ui-768x1024.png",
-        "ui-1440x1000.png",
+        "ui-390x2000.png",
+        "ui-768x1700.png",
+        "ui-1440x1100.png",
     }
     if not required.issubset(seen):
         raise EvidenceError(f"Required evidence is absent: {sorted(required - seen)}")
