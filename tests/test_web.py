@@ -39,7 +39,8 @@ class WebTests(unittest.TestCase):
         self.assertIn('label for="from"', body)
         self.assertIn('label for="to"', body)
         self.assertIn("@media (max-width: 780px)", body)
-        self.assertIn("@media (max-width: 1100px)", body)
+        self.assertIn("@media (max-width: 1200px)", body)
+        self.assertIn("width: min(1200px, calc(100% - 2rem));", body)
         self.assertIn('class="field-row direction-row"', body)
         self.assertIn(
             "grid-template-columns: minmax(0, 1.15fr) auto minmax(0, 0.85fr);",

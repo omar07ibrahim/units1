@@ -64,7 +64,7 @@ select:focus-visible,
 }
 .skip-link:focus { transform: translateY(0); }
 .shell {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1200px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 1.4rem 0 3rem;
 }
@@ -127,7 +127,7 @@ h1 {
 }
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   gap: 1rem;
   align-items: stretch;
 }
@@ -351,7 +351,7 @@ pre {
 }
 .provenance p { margin: 0; }
 .provenance p + p { margin-top: 0.35rem; }
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .workspace { grid-template-columns: 1fr; }
   .result-card { min-height: 28rem; }
 }
@@ -360,7 +360,7 @@ pre {
   .registry-tag { display: none; }
 }
 @media (max-width: 460px) {
-  .shell { width: min(100% - 1rem, 1120px); padding-top: 0.7rem; }
+  .shell { width: min(100% - 1rem, 1200px); padding-top: 0.7rem; }
   .field-row { grid-template-columns: 1fr; }
   .swap { width: 100%; }
   .fact-grid { grid-template-columns: 1fr; }
