@@ -33,7 +33,6 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12.11"
-          cache: false
       - name: Install hash-locked build backend
         run: python -m pip install --require-hashes -r requirements-dev.lock
       - name: Run structural policy gate
@@ -98,7 +97,6 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12.11"
-          cache: false
       - name: Require runner-provided Chrome without installing software
         run: |
           command -v google-chrome
