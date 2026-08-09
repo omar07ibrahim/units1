@@ -231,9 +231,9 @@ def verify(manifest_path: Path, root: Path, expected_ci_sha: str | None) -> int:
         "legacy-drift.svg",
         "result-tour.gif",
         "sample-receipt.json",
-        "ui-390x2000.png",
+        "ui-390x2300.png",
         "ui-768x1700.png",
-        "ui-1440x1100.png",
+        "ui-1440x1300.png",
     }
     if not required.issubset(seen):
         raise EvidenceError(f"Required evidence is absent: {sorted(required - seen)}")

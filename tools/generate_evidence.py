@@ -529,9 +529,9 @@ def create_browser_evidence(output: Path) -> tuple[str, dict[str, tuple[int, int
         text=True,
     )
     dimensions = {
-        "ui-390x2000.png": (390, 2000),
+        "ui-390x2300.png": (390, 2300),
         "ui-768x1700.png": (768, 1700),
-        "ui-1440x1100.png": (1440, 1100),
+        "ui-1440x1300.png": (1440, 1300),
     }
     profile = output / ".chrome-profile"
     try:
@@ -598,9 +598,9 @@ def write_manifest(
         "legacy-drift.svg": "chart derived from drift.csv",
         "result-tour.gif": "animated bitmap rendering of three real CLI results",
         "sample-receipt.json": "canonical receipt emitted by the real CLI",
-        "ui-390x2000.png": "Chrome screenshot of the local WSGI app",
+        "ui-390x2300.png": "Chrome screenshot of the local WSGI app",
         "ui-768x1700.png": "Chrome screenshot of the local WSGI app",
-        "ui-1440x1100.png": "Chrome screenshot of the local WSGI app",
+        "ui-1440x1300.png": "Chrome screenshot of the local WSGI app",
     }
     files = []
     for name in sorted(kinds):

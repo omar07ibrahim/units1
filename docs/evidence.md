@@ -6,7 +6,7 @@ Portfolio media follows a two-commit adoption rule.
 
 The read-only CI job checks out one exact commit, starts the standard-library WSGI app on `127.0.0.1`, and uses the runner-provided Chrome binary without installing browser software. It produces:
 
-- `ui-390x2000.png`, `ui-768x1700.png`, and `ui-1440x1100.png`: actual local browser renders of the same successful conversion at 390, 768, and 1440 CSS-pixel widths. Tall viewports keep the complete server-rendered flow in evidence.
+- `ui-390x2300.png`, `ui-768x1700.png`, and `ui-1440x1300.png`: actual local browser renders of the same successful conversion at 390, 768, and 1440 CSS-pixel widths. Tall viewports keep the complete server-rendered flow in evidence.
 - `cli-transcript.txt` and `cli-transcript.png`: stdout from an actual convert-and-verify round trip plus a deterministic bitmap rendering.
 - `result-tour.gif`: three frames rendered from three actual CLI conversion outputs.
 - `architecture.svg` and `conversion-flow.svg`: deterministic diagrams of implemented modules and stages.
