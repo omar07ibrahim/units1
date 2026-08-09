@@ -122,7 +122,10 @@ def _parse_original(value: str) -> Decimal:
     mantissa = re.split(r"[eE]", candidate, maxsplit=1)[0]
     if sum(character.isdigit() for character in mantissa) > 50:
         raise VerificationError("original_input has too many digits.")
-    parsed = Decimal(candidate)
+    try:
+        parsed = Decimal(candidate)
+    except InvalidOperation as exc:
+        raise VerificationError("original_input is not a valid decimal.") from exc
     if not parsed.is_finite():
         raise VerificationError("original_input must be finite.")
     if not parsed.is_zero() and abs(parsed.adjusted()) > 100:
