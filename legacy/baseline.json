@@ -17,7 +17,7 @@
       "path": "app.py",
       "git_blob_sha1": "a3af754672f88ab6af3e49f812a0cbe54b94e131",
       "bytes": 2288,
-      "copy": "legacy/source/app.py"
+      "copy": "legacy/source/app.py.txt"
     },
     {
       "path": "templates/index.html",

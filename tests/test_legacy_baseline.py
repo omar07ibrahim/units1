@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.machinery
 import importlib.util
 import json
 import sys
@@ -36,9 +37,11 @@ def load_legacy_module():
     previous = sys.modules.get("flask")
     sys.modules["flask"] = fake_flask
     try:
-        spec = importlib.util.spec_from_file_location(
-            "measuretrace_legacy_fixture", ROOT / "legacy" / "source" / "app.py"
+        source = ROOT / "legacy" / "source" / "app.py.txt"
+        loader = importlib.machinery.SourceFileLoader(
+            "measuretrace_legacy_fixture", str(source)
         )
+        spec = importlib.util.spec_from_loader(loader.name, loader)
         if spec is None or spec.loader is None:
             raise AssertionError("Unable to load the frozen legacy fixture.")
         module = importlib.util.module_from_spec(spec)
