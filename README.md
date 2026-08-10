@@ -98,3 +98,15 @@ The original application is preserved byte-for-byte under `legacy/source/`, anch
 MeasureTrace is not a calibration service, legal-metrology system, broad unit library, localization framework, benchmark, or claim of numerical superiority over established libraries. It does not sign receipts or establish who produced one; SHA-256 only makes post-issuance byte changes detectable.
 
 No repository license has been selected for this repository. Reuse rights must not be inferred. The branch makes no ownership or authorship claim. Details are in [docs/provenance.md](docs/provenance.md).
+## Maintenance and governance
+
+The maintained source version is `0.1.0`. Security reports belong in
+[GitHub private vulnerability reporting](https://github.com/omar07ibrahim/measuretrace/security/advisories/new),
+not a public issue. Reproduction, contribution, and visual-adoption rules are
+documented in [CONTRIBUTING.md](CONTRIBUTING.md); maintained-source changes are
+recorded in [CHANGELOG.md](CHANGELOG.md).
+
+A release remains intentionally deferred because the repository history does
+not establish who can select a license for the original baseline. Publishing
+source archives or a package index release must wait for a documented
+rights-holder decision; see [docs/provenance.md](docs/provenance.md).
